@@ -26,12 +26,12 @@ name: django
         with: # secret 처리한 이름을 사용
           username: ${{secrets.DOCKERHUB_USERNAME}}
           password: ${{secrets.DOCKERHUB_TOKEN}}
-      - name: build and release to DockerHub
-        env:
-          NAME: UserName # Dockerhub의 유저 이름
-          REPO: dockerdjango # Dockerhub의 레포지토리 이름
-        run: |
-          docker build -t $REPO .
-          docker tag $REPO:latest $NAME/$REPO:latest
-          docker push $NAME/$REPO:latest
+        - name: build and release to DockerHub
+          env:
+            NAME: UserName # Dockerhub의 유저 이름
+            REPO: dockerdjango # Dockerhub의 레포지토리 이름
+          run: |
+            docker build -t $REPO .
+            docker tag $REPO:latest $NAME/$REPO:latest
+            docker push $NAME/$REPO:latest
 
